@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  a3tools:
+    restart: always
+    build:
+      context: .
+      args:
+        - STEAM_USERNAME
+        - STEAM_PASSWORD
+        - STEAM_AUTHCODE
