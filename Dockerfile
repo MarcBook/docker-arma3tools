@@ -1,10 +1,12 @@
 FROM debian
 
 
-RUN apt-get update && apt-get install -y wget unzip gnupg gnupg2 gnupg1 apt-transport-https lib32gcc1 wget
+RUN apt-get update && apt-get install -y wget unzip gnupg gnupg2 gnupg1 apt-transport-https lib32gcc1 wget git make gcc libssl-dev
 RUN dpkg --add-architecture i386 && wget -nc https://dl.winehq.org/wine-builds/Release.key && apt-key add Release.key
 RUN echo deb https://dl.winehq.org/wine-builds/debian/ stretch main >> /etc/apt/sources.list
 RUN mkdir -p ~/workingdir && apt-get update && apt-get -y install --install-recommends winehq-stable
+RUN git clone https://github.com/KoffeinFlummi/armake.git
+RUN cd armake && make install
 
 RUN cd /root \
 	&& wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz \
